@@ -34,3 +34,60 @@ const add3 = (
 };
 
 add3(2, 3, add);
+
+// TYPE ALIASES
+type AddFn = (num1: number, num2: number) => number;
+type strOrNum = string | number;
+
+// TYPES WITH INTERFACES
+interface Credentials {
+  password: string;
+  email: string;
+}
+
+let creds: Credentials = {
+  password: "abc",
+  email: "abc@example.com",
+};
+
+class AuthCredentials implements Credentials {
+  password: string;
+  email: string;
+  userName: string;
+  age: number;
+}
+
+// MERGING TYPES
+type Admin = {
+  permission: string[];
+};
+
+type User = {
+  userName: string;
+};
+
+type AppAdminUnion = Admin | User; // Type Unions
+type AppAdminMerge = Admin & User; //  Type Merging
+
+// MERGING INTERFACES
+interface AdminInt {
+  permission: string[];
+}
+
+interface UserInt {
+  userName: string;
+}
+
+interface TeacherInt {
+  teacherName: string;
+}
+
+interface SchoolApp extends AdminInt, UserInt, TeacherInt {}
+
+// TYPE LITERALS
+let role: "admin" | "user" | "editor";
+
+role = "admin";
+role = "editor";
+role = "user";
+// role = "abc"; // NOT allowed
